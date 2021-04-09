@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link type="text/css" rel="stylesheet"
+	th:href="@{css/bootstrap.min.css}" />
+<title>Powerlifting results</title>
+</head>
+<body>
+
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]], here are your powerlifting results!</h1>
+
+	<table class="table table-striped">
+		<tr>
+			<th>Lift</th>
+			<th>Kgs</th>
+			<th>RPE</th>
+			<th>date</th>
+			<th>reps</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr th:each="result : ${results}">
+			<td th:text="${result.lift}"></td>
+			<td th:text="${result.kg}"></td>
+			<td th:text="${result.RPE}"></td>
+			<td th:text="${result.date}"></td>
+			<td th:text="${result.reps}"></td>
+			<td><a th:href="@{/edit/{id}(id=${result.id})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${result.id})}"
+				class="btn btn-danger">Delete</a></td>
+		</tr>
+	</table>
+	
+	<a href="/add" class="btn btn-success">Add a new result</a>
+	<br>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+</body>
+</html>
