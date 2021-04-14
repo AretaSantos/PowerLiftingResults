@@ -1,12 +1,18 @@
 package com.example.PowerliftingResults.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "usertable")
 public class User {
 	
 	@Id
@@ -21,25 +27,29 @@ public class User {
 	 @Column(name = "password", nullable = false)
 	 private String passwordHash;
 	 
-	 @Column(name = "email", nullable = false, unique = true)
-	 private String email;
-	 
 	 @Column(name = "role", nullable = false)
 	 private String role;
 	 
+	 @Column(name = "email", nullable = false, unique = true)
+	 private String email;
+	 
 	 @Column (name = "reset_password_token")
 	 private String resetPasswordToken;
+	 
+	 //@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	 //private List<Result> results;
 	 
 	 
 	 public User() {
 	    }
 
-		public User(String username, String passwordHash, String email, String role) {
+		public User(String username, String passwordHash, String role, String email) {
 			super();
 			this.username = username;
 			this.passwordHash = passwordHash;
-			this.email = email;
 			this.role = role;
+			this.email = email;
+			
 		
 		}
 
@@ -67,13 +77,6 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getRole() {
 		return role;
@@ -81,6 +84,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getResetPasswordToken() {
@@ -90,6 +101,15 @@ public class User {
 	public void setResetPasswordToken(String resetPasswordToken) {
 		this.resetPasswordToken = resetPasswordToken;
 	}
+
+	//public List<Result> getResults() {
+	//	return results;
+	//}
+
+	//public void setResults(List<Result> results) {
+	//	this.results = results;
+	//}
+	
 	
 	
 

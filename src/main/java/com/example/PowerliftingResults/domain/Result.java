@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Result {
@@ -11,33 +13,45 @@ public class Result {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
-	private long id;
+	private Long resultid;
 	private String lift;
 	private String kg;
 	private String RPE;
 	private String date;
 	private String reps;
 	
+	@ManyToOne
+	@JoinColumn(name = "id")
+		private User user;
+	
 	public Result() {
 		
 	}
 	
+	
 	public Result(String lift, String kg, String rPE, String date, String reps) {
+		super();
 	
 		this.lift = lift;
 		this.kg = kg;
 		RPE = rPE;
 		this.date = date;
 		this.reps = reps;
+		this.user = user;
 	}
 
 
-	public long getId() {
-		return id;
+	
+	public Long getResultid() {
+		return resultid;
 	}
-	public void setId(long id) {
-		this.id = id;
+
+
+	public void setResultid(Long resultid) {
+		this.resultid = resultid;
 	}
+
+
 	public String getLift() {
 		return lift;
 	}
@@ -68,10 +82,19 @@ public class Result {
 	public void setReps(String reps) {
 		this.reps = reps;
 	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
-		return "Result [id=" + id + ", lift=" + lift + ", kg=" + kg + ", RPE=" + RPE + ", date=" + date + ", reps="
+		return "Result [resultid=" + resultid + ", lift=" + lift + ", kg=" + kg + ", RPE=" + RPE + ", date=" + date + ", reps="
 				+ reps + "]";
 	}
 	
