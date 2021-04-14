@@ -42,10 +42,7 @@ public class PowerliftingResultsContoller {
 	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	        String username = user.getUsername();
 	        User userNow = urepository.findByUsername(username);
-			System.out.println("JUKKA START");
-			System.out.println(user);
-			System.out.println("JUKKA END");
-			model.addAttribute("result", repository.findByUser(userNow));
+			model.addAttribute("results", repository.findByUser(userNow));
 			return "results";
 		}
 	@RequestMapping(value="/resultlist", method = RequestMethod.GET)
