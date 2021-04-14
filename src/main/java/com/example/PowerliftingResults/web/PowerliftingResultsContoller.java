@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
+
 
 import com.example.PowerliftingResults.domain.Result;
 import com.example.PowerliftingResults.domain.ResultRepository;
-import com.example.PowerliftingResults.domain.User;
+
 
 
 @Controller
@@ -24,7 +24,7 @@ public class PowerliftingResultsContoller {
 	@Autowired 
 	private ResultRepository repository;
 	
-	 @RequestMapping(value="/login")
+	@RequestMapping(value="/login")
 	    public String login() {	
 	        return "login";
 	    }

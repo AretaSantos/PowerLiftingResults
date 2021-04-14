@@ -2,32 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<link type="text/css" rel="stylesheet"
-	th:href="@{css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 <title> Powerlifting results</title>
 </head>
 <body>
 
+<div class="container">
 <h1>Add a new lifting record</h1>
-
-<div>
-
+<div class="col-md-4">
  <form th:object="${result}" th:action="@{save}" action="#" method="post">
- <label for="lift">Lift</label>
- <input type="text" th:field="*{lift}" />
- <label for="ks">KGs</label>
- <input type="text"th:field="*{kg}" />
- <label for="RPE">RPE</label>
- <input type="text" th:field="*{RPE}" />
- <label for="reps">Reps</label>
- <input type="text" th:field="*{reps}" />
- <label for="date">Date</label>
- <input type="text" th:field="*{date}" />
+ 
+ <div>
+  <label for= "lift">Lift<input type="text" th:field= "*{lift}" class="form-control"></label>
+  </div>
+  <div>
+  <label for="kgs">KGs<input type="text" th:field= "*{kg}" class="form-control"></label>
+  </div>
+  <div>
+  <label for="RPE">RPE<input type="text" th:field= "*{RPE}" class="form-control"></label>
+  </div>
+  <div>
+  <label for="Reps">Reps<input type="text" th:field= "*{reps}" class="form-control"></label>
+  </div>
+  <div>
+  <label for="date">Date<input type="text" th:field= "*{date}" class="form-control"></label>
+  </div>
  <input type="submit" value="Save"  class="btn btn-success"></input>
  </form>
-
 </div>
-
+</div>
 
 
 </body>

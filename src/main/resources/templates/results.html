@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <link type="text/css" rel="stylesheet"
 	th:href="@{css/bootstrap.min.css}" />
@@ -8,7 +8,14 @@
 </head>
 <body>
 
-	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]], here are your powerlifting results!</h1>
+<div class="container">
+
+	<div>
+		<h1> Powerlifting results</h1>
+	</div><br>
+
+	<h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]],
+		here are your powerlifting results!</h3>
 
 	<table class="table table-striped">
 		<tr>
@@ -27,15 +34,19 @@
 			<td th:text="${result.date}"></td>
 			<td th:text="${result.reps}"></td>
 			<td><a th:href="@{/edit/{id}(id=${result.id})}">Edit</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${result.id})}"
-				class="btn btn-danger">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')">
+			<a th:href="@{/delete/{id}(id=${result.id})}" class="btn btn-xs btn-danger">Delete</a></td>
 		</tr>
 	</table>
-	
-	<a href="/add" class="btn btn-success">Add a new result</a>
-	<br>
+	<a href="/add" class="btn btn-primary">Add a new result</a><br><br>
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out" />
-	</form>
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" style="padding:10px 10"/>
+		</form>
+	</div>
+	
+
+	
+	<br>
+	
 </body>
 </html>

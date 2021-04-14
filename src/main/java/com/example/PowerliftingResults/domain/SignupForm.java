@@ -58,7 +58,6 @@ public class SignupForm {
 		this.role = role;
 	}
 	
-	
 
 	public String getEmail() {
 		return email;

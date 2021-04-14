@@ -19,8 +19,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import com.example.PowerliftingResults.web.UserDetailServiceImpl;
 
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -40,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
        .and()
      .formLogin()
          .loginPage("/login")
-         .defaultSuccessUrl("/results")
+         .defaultSuccessUrl("/results", true)
          .permitAll()
          .and()
      .logout()

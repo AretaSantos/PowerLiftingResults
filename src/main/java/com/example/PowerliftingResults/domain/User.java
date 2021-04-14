@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, updatable = false)
@@ -26,10 +27,12 @@ public class User {
 	 @Column(name = "role", nullable = false)
 	 private String role;
 	 
+	 @Column (name = "reset_password_token")
+	 private String resetPasswordToken;
+	 
+	 
 	 public User() {
 	    }
-
-	
 
 		public User(String username, String passwordHash, String email, String role) {
 			super();
@@ -37,6 +40,7 @@ public class User {
 			this.passwordHash = passwordHash;
 			this.email = email;
 			this.role = role;
+		
 		}
 
 	public Long getId() {
@@ -78,6 +82,16 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+	
+	
 
 	 
 }
