@@ -36,8 +36,8 @@ public class User {
 	 @Column (name = "reset_password_token")
 	 private String resetPasswordToken;
 	 
-	 //@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	 //private List<Result> results;
+	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	 private List<Result> results;
 	 
 	 
 	 public User() {
@@ -50,7 +50,6 @@ public class User {
 			this.role = role;
 			this.email = email;
 			
-		
 		}
 
 	public Long getId() {
@@ -102,16 +101,13 @@ public class User {
 		this.resetPasswordToken = resetPasswordToken;
 	}
 
-	//public List<Result> getResults() {
-	//	return results;
-	//}
+	public List<Result> getResults() {
+		return results;
+	}
 
-	//public void setResults(List<Result> results) {
-	//	this.results = results;
-	//}
+	public void setResults(List<Result> results) {
+		this.results = results;
+	}
 	
-	
-	
-
 	 
 }

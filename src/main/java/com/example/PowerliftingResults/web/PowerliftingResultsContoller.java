@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.PowerliftingResults.domain.Result;
 import com.example.PowerliftingResults.domain.ResultRepository;
+import com.example.PowerliftingResults.domain.User;
+import com.example.PowerliftingResults.domain.UserRepository;
 
 
 
@@ -24,6 +28,9 @@ public class PowerliftingResultsContoller {
 	@Autowired 
 	private ResultRepository repository;
 	
+	@Autowired
+	private UserRepository urepository;
+	
 	@RequestMapping(value="/login")
 	    public String login() {	
 	        return "login";
@@ -31,10 +38,16 @@ public class PowerliftingResultsContoller {
 	
 	@RequestMapping("/results")
 	public String results(Model model) {
-	model.addAttribute("results", repository.findAll());
-	return "results";
-	}
 	
+	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	        String username = user.getUsername();
+	        User userNow = urepository.findByUsername(username);
+			System.out.println("JUKKA START");
+			System.out.println(user);
+			System.out.println("JUKKA END");
+			model.addAttribute("result", repository.findByUser(userNow));
+			return "results";
+		}
 	@RequestMapping(value="/resultlist", method = RequestMethod.GET)
 	    public @ResponseBody List<Result> bookListRest() {	
 			System.out.println(repository.findAll());
