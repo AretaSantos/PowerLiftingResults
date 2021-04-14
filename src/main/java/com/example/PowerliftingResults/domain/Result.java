@@ -1,11 +1,15 @@
 package com.example.PowerliftingResults.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Result {
@@ -17,8 +21,10 @@ public class Result {
 	private String lift;
 	private String kg;
 	private String RPE;
-	private String date;
 	private String reps;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
 	
 	@ManyToOne
 	@JoinColumn(name = "id")
@@ -28,24 +34,27 @@ public class Result {
 		
 	}
 	
-	
-	public Result(String lift, String kg, String rPE, String date, String reps) {
+	public Result(String lift, String kg, String rPE, String reps, LocalDate date, User user) {
 		super();
-	
 		this.lift = lift;
 		this.kg = kg;
 		RPE = rPE;
-		this.date = date;
 		this.reps = reps;
+		this.date = date;
 		this.user = user;
 	}
 
 
-	
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+
+
 	public Long getResultid() {
 		return resultid;
 	}
-
 
 	public void setResultid(Long resultid) {
 		this.resultid = resultid;
@@ -70,12 +79,7 @@ public class Result {
 	public void setRPE(String rPE) {
 		RPE = rPE;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
+
 	public String getReps() {
 		return reps;
 	}

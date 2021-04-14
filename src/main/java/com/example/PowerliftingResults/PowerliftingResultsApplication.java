@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import java.time.LocalDate;
 
 import com.example.PowerliftingResults.domain.Result;
 import com.example.PowerliftingResults.domain.ResultRepository;
@@ -33,10 +33,9 @@ public class PowerliftingResultsApplication {
 			
 			log.info("Save a few lifts");
 			
-			
-			repository.save(new Result("maastaveto", "130kg", "RPE9", "31.3.2021", "1"));
-			repository.save(new Result("penkkipunnerrus", "72,5kg", "RPE9", "29.3.2021", "1"));	
-			repository.save(new Result("kyykky", "130kg", "RPE10", "28.1.2021", "3"));
+			repository.save(new Result("maastaveto", "130kg", "RPE9", "1", LocalDate.of(2021, 03, 21), user1));
+			repository.save(new Result("penkkipunnerrus", "72,5kg", "RPE9", "1", LocalDate.of(2021, 03, 21), user2));	
+			repository.save(new Result("kyykky", "130kg", "RPE10", "3", LocalDate.of(2021, 12, 10), user2));
 			
 			log.info("fetch all lifts");
 			for (Result result : repository.findAll()) {

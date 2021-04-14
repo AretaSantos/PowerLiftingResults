@@ -31,7 +31,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<td th:text="${result.lift}"></td>
 			<td th:text="${result.kg}"></td>
 			<td th:text="${result.RPE}"></td>
-			<td th:text="${result.date}"></td>
+			<td th:text="${#temporals.format(result.date, 'dd.MM.yyyy')}"></td>
 			<td th:text="${result.reps}"></td>
 			<td><a th:href="@{/edit/{id}(id=${result.resultid})}">Edit</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')">
