@@ -51,6 +51,9 @@ public class Result {
 	}
 
 
+	public LocalDate getDate() {
+		return date;
+	}
 
 	public Long getResultid() {
 		return resultid;

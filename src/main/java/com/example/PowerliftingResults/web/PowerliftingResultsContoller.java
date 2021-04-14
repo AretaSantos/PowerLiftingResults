@@ -37,6 +37,7 @@ public class PowerliftingResultsContoller {
 	
 	@RequestMapping(value="/resultlist", method = RequestMethod.GET)
 	    public @ResponseBody List<Result> bookListRest() {	
+			System.out.println(repository.findAll());
 	        return (List<Result>) repository.findAll();
 	    }
 	
