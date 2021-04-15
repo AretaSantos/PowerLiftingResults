@@ -13,6 +13,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
  <form th:object="${result}" th:action="@{../save}" action="#" method="post">
  
  <div>
+	<label><input type="hidden" id="id" th:field="*{resultid}" readonly="readonly" /></label>
   <label for= "lift">Lift<input type="text" th:field= "*{lift}" class="form-control"></label>
   </div>
   <div>

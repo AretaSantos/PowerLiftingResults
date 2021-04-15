@@ -59,15 +59,28 @@ public class PowerliftingResultsContoller {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Result result){
+		
+	 UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 String username = user.getUsername();
+	 User userNow = urepository.findByUsername(username);
+	 result.setUser(userNow);
+	 
 	 repository.save(result);
 	 return "redirect:results";
 	}
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String EditResult(@PathVariable("id") Long ResultId, Model model) {
-		Optional <Result> result = repository.findById(ResultId);
+	public String EditResult(@PathVariable("id") Long resultid, Model model) {
+		
+		 UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 String username = user.getUsername();
+		 Result result = repository.findByResultid(resultid);
+		 User userNow = urepository.findByUsername(username);
+		 result.setUser(userNow);
+		
+		//Optional <Result> result = repository.findById(ResultId);
 		model.addAttribute("result", result);
-			return "editresult";
+		return "editresult";
 	}
 	
 	

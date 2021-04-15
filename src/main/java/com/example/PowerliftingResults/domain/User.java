@@ -108,6 +108,8 @@ public class User {
 	public void setResults(List<Result> results) {
 		this.results = results;
 	}
+
+	
 	
 	 
 }

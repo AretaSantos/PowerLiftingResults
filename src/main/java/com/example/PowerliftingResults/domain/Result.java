@@ -101,9 +101,11 @@ public class Result {
 
 	@Override
 	public String toString() {
-		return "Result [resultid=" + resultid + ", lift=" + lift + ", kg=" + kg + ", RPE=" + RPE + ", date=" + date + ", reps="
-				+ reps + "]";
+		return "Result [resultid=" + resultid + ", lift=" + lift + ", kg=" + kg + ", RPE=" + RPE + ", reps=" + reps
+				+ ", date=" + date + ", user=" + user + "]";
 	}
+
+
 	
 	
 

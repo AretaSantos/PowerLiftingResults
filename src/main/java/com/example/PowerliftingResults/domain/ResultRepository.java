@@ -6,8 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ResultRepository extends CrudRepository <Result, Long> {
 	
-	List<Result> findBylift(String lift);
-	List<Result> findByUser(User user);
+	public List<Result> findBylift(String lift);
+	public List<Result> findByUser(User user);
+	public Result findByResultid(Long resultid);
 	
 	}
 
