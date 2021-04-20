@@ -31,6 +31,7 @@ public class PowerliftingResultsContoller {
 	@Autowired
 	private UserRepository urepository;
 	
+	
 	@RequestMapping(value="/login")
 	    public String login() {	
 	        return "login";
@@ -43,6 +44,7 @@ public class PowerliftingResultsContoller {
 	        String username = user.getUsername();
 	        User userNow = urepository.findByUsername(username);
 			model.addAttribute("results", repository.findByUser(userNow));
+			
 			return "results";
 		}
 	@RequestMapping(value="/resultlist", method = RequestMethod.GET)
@@ -52,7 +54,7 @@ public class PowerliftingResultsContoller {
 	    }
 	
 	@RequestMapping(value = "/add")
-	public String addStudent(Model model){
+	public String addResult(Model model){
 	 model.addAttribute("result", new Result());
 	 return "addresult";
 	}

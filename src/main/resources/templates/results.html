@@ -4,6 +4,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <link type="text/css" rel="stylesheet"
 	th:href="@{css/bootstrap.min.css}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Powerlifting results</title>
 </head>
 <body>
@@ -15,18 +17,28 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	</div><br>
 
 	<h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]],
-		here are your powerlifting results!</h3>
-
-	<table class="table table-striped">
+		here are your powerlifting results!</h3><br>
+		
+	<!--  <form th:action="@{/results}" method= "get">
+    <input type="text" name="keyword" id="txtSearch" size="30" th:value="${keyword}" required />
+  	<button type="submit">filter</button>
+ 	</form><br>-->
+ 
+ <input id="myInput" type="text" size="20" placeholder="Search.."><br><br>
+ 
+	<table class="table table-bordered">
+	<thead>
 		<tr>
 			<th>Lift</th>
 			<th>Kgs</th>
 			<th>RPE</th>
 			<th>date</th>
 			<th>reps</th>
-			<th></th>
-			<th></th>
+			
+			
 		</tr>
+	</thead>
+	<tbody id="myTable">		
 		<tr th:each="result : ${results}">
 			<td th:text="${result.lift}"></td>
 			<td th:text="${result.kg}"></td>
@@ -37,16 +49,26 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<td sec:authorize="hasAuthority('ADMIN')">
 			<a th:href="@{/delete/{id}(id=${result.resultid})}" class="btn btn-xs btn-danger">Delete</a></td>
 		</tr>
+		</tbody>
 	</table>
+
+
 	<a href="/add" class="btn btn-primary">Add a new result</a><br><br>
 	<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" style="padding:10px 10"/>
 		</form>
+		
+			   <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 	</div>
-	
-
-	
-	<br>
 	
 </body>
 </html>
