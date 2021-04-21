@@ -44,17 +44,6 @@ public class Result {
 		this.user = user;
 	}
 
-
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-
-	public LocalDate getDate() {
-		return date;
-	}
-
 	public Long getResultid() {
 		return resultid;
 	}
@@ -63,22 +52,26 @@ public class Result {
 		this.resultid = resultid;
 	}
 
-
 	public String getLift() {
 		return lift;
 	}
+
 	public void setLift(String lift) {
 		this.lift = lift;
 	}
+
 	public float getKg() {
 		return kg;
 	}
+
 	public void setKg(float kg) {
 		this.kg = kg;
 	}
+
 	public String getRPE() {
 		return RPE;
 	}
+
 	public void setRPE(String rPE) {
 		RPE = rPE;
 	}
@@ -86,10 +79,18 @@ public class Result {
 	public String getReps() {
 		return reps;
 	}
+
 	public void setReps(String reps) {
 		this.reps = reps;
 	}
-	
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
 	public User getUser() {
 		return user;
@@ -104,6 +105,7 @@ public class Result {
 		return "Result [resultid=" + resultid + ", lift=" + lift + ", kg=" + kg + ", RPE=" + RPE + ", reps=" + reps
 				+ ", date=" + date + ", user=" + user + "]";
 	}
+
 
 
 	

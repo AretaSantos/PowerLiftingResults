@@ -26,7 +26,7 @@ public class PowerliftingResultsApplication {
 	public CommandLineRunner Results(ResultRepository repository, UserRepository urepository) {
 		return (args) -> {
 			
-			
+			/*
 			urepository.deleteAll();
 			
 			
@@ -43,7 +43,7 @@ public class PowerliftingResultsApplication {
 			log.info("fetch all lifts");
 			for (Result result : repository.findAll()) {
 				log.info(result.toString());
-			}
+			}*/
 
 		};
 
