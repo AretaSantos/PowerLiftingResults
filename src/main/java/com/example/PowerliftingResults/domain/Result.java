@@ -19,7 +19,7 @@ public class Result {
 	
 	private Long resultid;
 	private String lift;
-	private String kg;
+	private int kg;
 	private String RPE;
 	private String reps;
 	
@@ -34,7 +34,7 @@ public class Result {
 		
 	}
 	
-	public Result(String lift, String kg, String rPE, String reps, LocalDate date, User user) {
+	public Result(String lift, int kg, String rPE, String reps, LocalDate date, User user) {
 		super();
 		this.lift = lift;
 		this.kg = kg;
@@ -70,10 +70,10 @@ public class Result {
 	public void setLift(String lift) {
 		this.lift = lift;
 	}
-	public String getKg() {
+	public int getKg() {
 		return kg;
 	}
-	public void setKg(String kg) {
+	public void setKg(int kg) {
 		this.kg = kg;
 	}
 	public String getRPE() {
