@@ -27,7 +27,7 @@ public class PowerliftingResultsApplication {
 		return (args) -> {
 			
 			
-			//urepository.deleteAll();
+			urepository.deleteAll();
 			
 			
 			User user1 = new User("user","$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", "email1");
