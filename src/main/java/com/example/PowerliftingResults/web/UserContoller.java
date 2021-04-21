@@ -31,8 +31,8 @@ public class UserContoller {
  
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
-    	if (!bindingResult.hasErrors()) { // validation errors
-    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) { // check password match		
+    	if (!bindingResult.hasErrors()) { 
+    		if (signupForm.getPassword().equals(signupForm.getPasswordCheck())) {	
 	    		String pwd = signupForm.getPassword();
 		    	BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		    	String hashPwd = bc.encode(pwd);
@@ -41,13 +41,26 @@ public class UserContoller {
 		    	newUser.setPasswordHash(hashPwd);
 		    	newUser.setUsername(signupForm.getUsername());
 		    	newUser.setRole("USER");
-		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
+		    	newUser.setEmail(signupForm.getEmail());
+		    	
+		    	if (repository.findByUsername(signupForm.getUsername()) == null) {
+		    		
+		    		if(repository.findByEmail(signupForm.getEmail()) == null) {
 		    		repository.save(newUser);
+		    		}
+		    		
+		    		else {
+		    			bindingResult.rejectValue("email", "err.email", "Email already in use");    	
+		    			return "signup";
+		    		
+		    		}
 		    	}
+		    	
 		    	else {
 	    			bindingResult.rejectValue("username", "err.username", "Username already exists");    	
 	    			return "signup";		    		
 		    	}
+		    	
     		}
     		else {
     			bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");    	
@@ -58,7 +71,38 @@ public class UserContoller {
     		return "signup";
     	}
     	return "redirect:/login";    	
-    }    
+    }  
     
+ 
+    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
+        User user = repository.findByEmail(email);
+        if (user != null) {
+            user.setResetPasswordToken(token);
+            repository.save(user);
+        } else {
+            throw new UsernameNotFoundException("Could not find any user with the email " + email);
+        }
+    }
+     
+    public User getByResetPasswordToken(String token) {
+        return repository.findByResetPasswordToken(token);
+    }
+     
+    public void updatePassword(User user, String newPassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPasswordHash(encodedPassword);
+         
+        user.setResetPasswordToken(null);
+        repository.save(user);
+    }
+    
+  
 }
+
     
+   
+  
+
+
+  

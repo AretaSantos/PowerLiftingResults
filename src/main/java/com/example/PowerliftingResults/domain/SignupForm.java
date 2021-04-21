@@ -59,7 +59,7 @@ public class SignupForm {
 	}
 	
 
-	/*public String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
@@ -73,6 +73,6 @@ public class SignupForm {
 
 	public void setEmailCheck(String emailCheck) {
 		this.emailCheck = emailCheck;
-	}*/
+	}
 
 }
