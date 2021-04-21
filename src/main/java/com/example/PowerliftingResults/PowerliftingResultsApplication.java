@@ -37,8 +37,8 @@ public class PowerliftingResultsApplication {
 		
 			log.info("Save a few lifts");
 			
-				repository.save(new Result("penkkipunnerrus", "72,5kg", "RPE9", "1", LocalDate.of(2021, 03, 21), user2));	
-			repository.save(new Result("kyykky", "130kg", "RPE10", "3", LocalDate.of(2021, 12, 10), user2));
+			repository.save(new Result("penkkipunnerrus", 72 , "RPE9", "1", LocalDate.of(2021, 03, 21), user2));	
+			repository.save(new Result("kyykky", 130, "RPE10", "3", LocalDate.of(2021, 12, 10), user2));
 			
 			log.info("fetch all lifts");
 			for (Result result : repository.findAll()) {
