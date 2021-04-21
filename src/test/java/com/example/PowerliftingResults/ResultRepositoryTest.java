@@ -36,7 +36,7 @@ public class ResultRepositoryTest {
 				urepository.save(user1);
 				urepository.save(user2);  
 				
-		Result result = new Result("maastaveto", 130, "RPE10", "1", LocalDate.of(2021, 03, 21), user2);
+		Result result = new Result("maastaveto", 130 , "RPE10", "1", LocalDate.of(2021, 03, 21), user2);
 		repository.save(result);
 		assertThat(result.getResultid()).isNotNull();
 	}
